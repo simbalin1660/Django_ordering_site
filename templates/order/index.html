@@ -19,7 +19,9 @@
         </div>
     </form>
 
+    <!-- list餐點 -->
     <table class="table table-bordered table-striped">
+        <!-- 表格第一排 -->
         <thead class="thead-dark">
         <tr>
             <th>訂單</th>
@@ -27,6 +29,7 @@
             <th></th>
         </tr>
         </thead>
+
         <tbody>
         {% for expense in expenses %}
             <tr>
@@ -45,22 +48,31 @@
                                 <!-- header -->
                                 <div class="modal-header">
                                     <h3 class="modal-title" id="staticBackdropLabel">修改</h3>
+                                    <!-- 叉叉關閉鈕 -->
                                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                 </div>
 
                                 <!-- body -->
                                 <div class="modal-header">
-                                    <h5>修改</h5>
+                                    <!-- 更新餐點 -->
+                                    <div class="form-group">
+                                        <input type="text" class="order form-control" placeholder="餐點">
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="text" class="price form-control" placeholder="價格">
+                                    </div>
                                 </div>
 
                                 <!--footer -->
                                 <div class="modal-footer">
                                     <div class="form-row d-flex flex-row">
+                                        <!-- 確認鈕 -->
                                         <div class="form-group col">
-                                            <button type="button" class="btn btn-primary">確定</button>
+                                            <button type="submit" class="btn btn-success">更新</button>
                                         </div>
+                                        <!-- 關閉鈕 -->
                                         <div class="form-group col">
-                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">關閉</button>
+                                            <button type="button" class="btn btn-danger" data-bs-dismiss="modal">關閉</button>
                                         </div>
                                     </div>
                                 </div>

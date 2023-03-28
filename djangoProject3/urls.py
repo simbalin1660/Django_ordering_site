@@ -15,17 +15,18 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from myapp.views import about, listing, order, newrestaurant, position, homepage
+from myapp.views import about, listing, order, newrestaurant, position, homepage, login
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('about/', about),
-    path('list/', listing),
     path('', homepage),
+    path('list/', listing),
     path('order/', order),
     path('newrestaurant/', newrestaurant),
     path('position/', position),
+    path('login/', login)
     # path('admin/myapp/product/add/', order),
     # path('list/([0-9a-zA-Z]+)/$', disp_detail),
 ]
