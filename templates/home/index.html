@@ -1,14 +1,18 @@
 {% extends 'base.html' %}
 
 {% block title %}
-
-    <title>地下室點餐機</title>
-
+    地下室點餐機
 {% endblock %}
 
+{% block heading %}
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <p>地下室點餐</p>
+            <button type="button" class="btn">今晚我想來點: {{ restaurant }}</button>
+        </div>
+    </div>
+{% endblock %}
 
 {% block content %}
-
     {% include 'home/map.html' %}
-
 {% endblock %}
