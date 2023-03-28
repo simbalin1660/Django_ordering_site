@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>沖床訂單</title>
+</head>
+<body>
+<h2>沖床訂單</h2>
+<table width="600" border="1" bgcolor="#fff8dc">
+<tr><td>產品型號</td><td>寄件人郵箱</td><td>沖床寬、深</td><td>閉合工作高度</td></tr>
+{% for p in product %}
+    <tr>
+        <td>{{ p.Type }}</td>
+        <td>{{ p.mail }}</td>
+        <td>{{ p.WidthAndLength }}</td>
+        <td>{{ p.ClosedWorkingHeight }}</td>
+    </tr>
+{% endfor %}
+</table>
+</body>
+</html>

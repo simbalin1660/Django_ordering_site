@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+    <form action="" method="POST">
+        {% csrf_token %}
+        <div class="form-row d-flex flex-row">
+            <div class="form-group col-2">
+                <label>{{ form.name.label }}</label>
+                {{ form.name }}
+            </div>
+            <div class="form-group col-2">
+                <label>{{ form.price.label }}</label>
+                {{ form.price }}
+            </div>
+            <div class="form-group col-1">
+                <input class="btn btn-success" style="margin-top: 30px;" type="submit" value="儲存">
+            </div>
+        </div>
+    </form>
+
+    <table class="table table-bordered table-striped">
+        <thead class="thead-dark">
+        <tr>
+            <th>訂單</th>
+            <th>金額</th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for expense in expenses %}
+            <tr>
+                <td>{{ expense.name }}</td>
+                <td>{{ expense.price }}</td>
+                <td>
+                    <a href="#" class="btn btn-info->">修改</a>
+                    <a href="#" class="btn btn-danger">刪除</a>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+{% endblock %}

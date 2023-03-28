@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>{{ p.Type }}</title>
+</head>
+<body>
+<h2>{{ p.Type }}</h2>
+<hr>
+<table width="400" border="1" bgcolor="aqua">
+    <tr><td>產品型號</td><td>{{ p.Type }}</td></tr>
+    <tr><td>訂購人郵箱</td><td>{{ p.mail }}</td></tr>
+    <tr><td>產品寬、深</td><td>{{ p.WidthAndLength }}</td></tr>
+    <tr><td>閉合高</td><td>{{ p.ClosedWorkingHeight }}</td></tr>
+</table>
+<a href="/list">返回列表</a>
+</body>
+</html>
