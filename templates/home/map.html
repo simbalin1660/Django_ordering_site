@@ -1,0 +1,36 @@
+<style type="text/css" media="screen">
+html {
+    height: 100%;
+    width: 100%;
+}
+#map {
+    position: absolute;
+    {#top: 25%;#}
+    right: 10%;
+    height: 50%;
+    width: 25vw;
+}
+</style>
+
+<div id="map"></div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script>
+function initMap() {
+    var Station_latlng = { lat: 22.7584534, lng: 120.3368677 }; // 台北車站的經緯度
+    var map = new google.maps.Map(document.getElementById('map'), {
+        zoom: 15, //放大的倍率
+        center: Station_latlng //初始化的地圖中心位置
+    });
+
+    //--------下面是呼叫一個新marker------
+
+    var marker = new google.maps.Marker({
+        position: Station_latlng, //marker的放置位置
+        map: map //這邊的map指的是第四行的map變數
+    });
+
+}
+
+</script>
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA-Ryt0-iNAqE6Qy-5rGtPHvNmUy8SiN_w&callback=initMap">
+</script>
