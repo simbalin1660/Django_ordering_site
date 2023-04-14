@@ -15,15 +15,13 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from myapp.views import about, listing, order, newrestaurant, position, homepage, login
-from django.contrib.staticfiles.urls import staticfiles_urlpatterns
+from myapp.views import newrestaurant, position, homepage, login, order_list
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('about/', about),
     path('', homepage),
-    path('list/', listing),
-    path('order/', order),
+    path('order/', order_list),
+    # path('order/<str:pk>', order_list),
     path('newrestaurant/', newrestaurant),
     path('position/', position),
     path('login/', login)

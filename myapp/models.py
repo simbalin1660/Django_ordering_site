@@ -1,6 +1,7 @@
 from django.db import models
 from django.utils import timezone
 
+
 # Create your models here.
 
 class Post(models.Model):
@@ -8,6 +9,7 @@ class Post(models.Model):
     slug = models.CharField(max_length=200)
     body = models.TextField()
     pub_date = models.DateTimeField(default=timezone.now)
+
 
 class NewTable(models.Model):
     bigint_f = models.BigIntegerField()
@@ -20,27 +22,16 @@ class NewTable(models.Model):
     int_f = models.IntegerField(default=2010)
     text_f = models.TextField()
 
-class Product(models.Model):
-    type = (('110', 'SN1-110'),
-            ('160', 'SN1-160'),
-            ('200', 'SN1-200'),
-            )
-    W_L = (('1', '1160x1680'),
-           ('2', '1300x1985'),
-           ('3', '1480x2113'),
-           )
-    CWH = (('1', '350'),
-           ('2', '400'),
-           ('3', '450'),
-           )
-    mail = models.EmailField(max_length=200)
-    Type = models.CharField(max_length=10, choices=type)
-    WidthAndLength = models.CharField(max_length=10, choices=W_L)
-    ClosedWorkingHeight = models.CharField(max_length=10, choices=CWH)
 
-    def __unicode__(self):
-        return self.Type
-
-class Expense(models.Model):
+class Order_with_user(models.Model):
+    from django.contrib.auth import get_user_model
+    User = get_user_model()
+    orderer_name = models.ForeignKey(User, on_delete=models.CASCADE)
+    id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=255)
     price = models.IntegerField()
+    date = models.DateField(auto_now=True)
+
+    # 顯示在admin頁面的名稱
+    def __str__(self):
+        return self.orderer_name.username

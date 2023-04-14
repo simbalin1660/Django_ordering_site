@@ -7,8 +7,12 @@
 {% block heading %}
     <div class="panel panel-default">
         <div class="panel-heading">
-            <p>地下室點餐</p>
-            <button type="button" class="btn">今晚我想來點: {{ restaurant }}</button>
+            <form action="/" method="ramdom">
+                {% csrf_token %}
+                <p>地下室點餐</p>
+                <button type="submit" class="btn" href="/" id="restaurant_button">{{ restaurant }}</button>
+            </form>
+            <p>{{ rlt }}</p>
         </div>
     </div>
 {% endblock %}

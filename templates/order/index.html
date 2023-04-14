@@ -5,6 +5,7 @@
     <form action="" method="POST">
         {% csrf_token %}
         <div class="form-row d-flex flex-row">
+            <!-- label的form是連接到model -->
             <div class="form-group col-3">
                 <label>{{ form.name.label }}</label>
                 {{ form.name }}
@@ -14,7 +15,7 @@
                 {{ form.price }}
             </div>
             <div class="form-group col-1">
-                <input class="btn btn-success" style="margin-top: 30px;" type="submit" value="儲存">
+                <input class="btn btn-success" style="margin-top: 30px;" type="submit" value="儲存"/>
             </div>
         </div>
     </form>
@@ -24,24 +25,30 @@
         <!-- 表格第一排 -->
         <thead class="thead-dark">
         <tr>
+            <th>訂餐者</th>
             <th>訂單</th>
             <th>金額</th>
             <th></th>
         </tr>
         </thead>
 
+        <!-- 表格內容 -->
         <tbody>
-        {% for expense in expenses %}
+        {% for order in orders %}
             <tr>
-                <td>{{ expense.name }}</td>
-                <td>{{ expense.price }}</td>
+                <td>{{ order.orderer_name }}</td>
+                <td>{{ order.name }}</td>
+                <td>{{ order.price }}</td>
                 <td>
+
                     <!-- 按鈕 -->
                     <button type="button" data-bs-toggle="modal" data-bs-target="#modify">修改</button>
                     <button type="button" data-bs-toggle="modal" data-bs-target="#delete">刪除</button>
 
                     <!-- 跳出視窗(修改) -->
-                    <div class="modal fade" id="modify" data-bs-backdrop="static" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                    <form action="/modify/{{ order.id }}/" class="modal fade" id="modify" data-bs-backdrop="static"
+                          aria-labelledby="staticBackdropLabel" aria-hidden="true" method="post">
+                        {% csrf_token %}
                         <div class="modal-dialog modal-dialog-centered">
                             <div class="modal-content">
 
@@ -49,17 +56,20 @@
                                 <div class="modal-header">
                                     <h3 class="modal-title" id="staticBackdropLabel">修改</h3>
                                     <!-- 叉叉關閉鈕 -->
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                            aria-label="Close"></button>
                                 </div>
 
                                 <!-- body -->
                                 <div class="modal-header">
                                     <!-- 更新餐點 -->
                                     <div class="form-group">
-                                        <input type="text" class="order form-control" placeholder="餐點">
+                                        <input type="text" name="order" class="order form-control"
+                                               value="{{ order.name }}">
                                     </div>
                                     <div class="form-group">
-                                        <input type="text" class="price form-control" placeholder="價格">
+                                        <input type="text" name="price" class="price form-control"
+                                               value="{{ order.price }}">
                                     </div>
                                 </div>
 
@@ -72,18 +82,20 @@
                                         </div>
                                         <!-- 關閉鈕 -->
                                         <div class="form-group col">
-                                            <button type="button" class="btn btn-danger" data-bs-dismiss="modal">關閉</button>
+                                            <button type="button" class="btn btn-danger" data-bs-dismiss="modal">關閉
+                                            </button>
                                         </div>
                                     </div>
                                 </div>
 
                             </div>
                         </div>
-                    </div>
+                    </form>
                 </td>
             </tr>
         {% endfor %}
         </tbody>
+
     </table>
 
 {% endblock %}
