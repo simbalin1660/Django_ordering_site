@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 from django.template.loader import get_template
+from django.contrib.auth.decorators import login_required
 from .form import OrderModelForm
 from .models import Order_with_user
 import random
@@ -23,15 +24,24 @@ def homepage(request):
 
 
 def order_list(request):
-    print(request.user.username)
+    from django.contrib.auth.models import User
     orders = Order_with_user.objects.all()
-    form = OrderModelForm()
+    form = OrderModelForm(initial={'orderer_name': User.objects.get(username=request.user.username)})
+    print(request.user.username)
 
     if request.method == 'POST':
+        temp = request.POST.get('orderer_name')
         form = OrderModelForm(request.POST)
-        if form.is_valid():  # is_valid()判斷表單是否通過驗證
+        # print('orderer : {}\nItem : {}\nPrice : {}'.format(form.cleaned_data['orderer_name'], form.cleaned_data['name'], form.cleaned_data['price']))
+        # form.create(request.user.username)
+        if form.is_valid():  # 驗證表單
+            order = form.save(commit=False)
+
+            order.orderer_name = User.objects.get(username=request.user.username)
             form.save()
             return redirect("/order")
+        else:
+            print(form.errors)
 
     context = {
         'orderer': request.user.username,
@@ -40,6 +50,7 @@ def order_list(request):
     }
 
     return render(request, 'order/index.html', context)
+
 
 
 # def ordermod(request, pk):
